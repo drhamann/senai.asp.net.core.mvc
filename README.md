@@ -29,3 +29,12 @@ Aulas sobre asp.net core mvc
 ## Livro
 
 - [Asp.net Core in action](https://github.com/drhamann/books/blob/216b0d05dcf424636c3c158bba2af251583718b6/asp-net-core-action-3rd.pdf)
+
+## Desafios
+
+- [Winnin](https://github.com/winnin/desafio/blob/master/BACKEND.md)
+- [qrcapital](https://github.com/qrcapital/desafios/blob/main/desafio-developer.md)
+- [Theo Sistemas](https://github.com/theossistemas/teste.dotNet)
+- [Marlon Luft](https://github.com/marlonluft/DesafioBackEndProjeto22)
+- [Toro Investimentos](https://github.com/ToroInvestimentos/desafio-toro-fullstack)
+- 
