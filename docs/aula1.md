@@ -11,7 +11,6 @@
 	• Validação de modelos
 	• Injeção de dependência
 	• Utilização do sistema de templates Razor
-	• Roteamento
 	• Filtros
 	• Autenticação e autorização
 	• Identity Framework
@@ -33,7 +32,7 @@
 ## Exercicio
 
 - 01 Fazer a corrida de cachorro em API
-- 02 Adicionar documentação no aplicativo da pizzaria 
+- 02 Criar na camada de apresenação um aplicativo web mvc da pizzaria
 
  ## Próximos
 
