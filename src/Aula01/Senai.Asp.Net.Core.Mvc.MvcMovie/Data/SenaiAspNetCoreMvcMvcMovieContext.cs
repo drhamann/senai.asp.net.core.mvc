@@ -14,6 +14,6 @@ namespace Senai.Asp.Net.Core.Mvc.MvcMovie.Data
         {
         }
 
-        public DbSet<Senai.Asp.Net.Core.Mvc.MvcMovie.Models.Movie> Movie { get; set; } = default!;
+        public DbSet<Movie> Movie { get; set; } = default!;
     }
 }
