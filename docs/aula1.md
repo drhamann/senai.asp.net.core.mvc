@@ -27,6 +27,22 @@
 ## Exemplo código
 
 ```
+-  https://learn.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-8.0&tabs=visual-studio
+Add-Migration InitialCreate
+Update-Database
+
+builder.Services.AddDbContext<MvcMovieContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext")));
+
+@model MvcMovie.Models.Movie
+
+if (context.Movie.Any())
+{
+    return;  // DB has been seeded.
+}
+
+ <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+ @Html.ActionLink("Details", "Details", new { id = item.Id })
 
 ```
 ## Exercicio
