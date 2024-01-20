@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Senai.Asp.Net.Core.Mvc.MvcMovie.Data;
 
@@ -11,9 +12,11 @@ using Senai.Asp.Net.Core.Mvc.MvcMovie.Data;
 namespace Senai.Asp.Net.Core.Mvc.MvcMovie.Migrations
 {
     [DbContext(typeof(SenaiAspNetCoreMvcMvcMovieContext))]
-    partial class SenaiAspNetCoreMvcMvcMovieContextModelSnapshot : ModelSnapshot
+    [Migration("20240119231854_Rating")]
+    partial class Rating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
