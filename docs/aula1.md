@@ -47,8 +47,7 @@ if (context.Movie.Any())
 ```
 ## Exercicio
 
-- 01 Fazer a corrida de cachorro em API
-- 02 Criar na camada de apresenação um aplicativo web mvc da pizzaria
+- 01 Finalizar tutorial https://learn.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-8.0&tabs=visual-studio
 
  ## Próximos
 

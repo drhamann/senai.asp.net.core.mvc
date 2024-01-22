@@ -37,4 +37,11 @@ Aulas sobre asp.net core mvc
 - [Theo Sistemas](https://github.com/theossistemas/teste.dotNet)
 - [Marlon Luft](https://github.com/marlonluft/DesafioBackEndProjeto22)
 - [Toro Investimentos](https://github.com/ToroInvestimentos/desafio-toro-fullstack)
-- 
+
+## Repositorios
+
+- [Programação orientada a objetos](https://github.com/drhamann/poo-senai)
+- [C# Avançado](https://github.com/drhamann/senai-avancado)
+- [Web Api](https://github.com/drhamann/senai-webapi)
+- [Corrida de cachorros](https://github.com/drhamann/CorridaDeCachorros)
+- [Pizzaria do senai](https://github.com/drhamann/senai.pizzaria)

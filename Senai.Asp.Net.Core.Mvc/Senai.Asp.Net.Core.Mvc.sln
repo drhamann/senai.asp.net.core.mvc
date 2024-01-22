@@ -26,7 +26,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8FE15E3A-F53
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aula01", "Aula01", "{BC7F06DF-CD58-4B7D-B86F-49BDA1B764CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senai.Asp.Net.Core.Mvc.MvcMovie", "..\src\Aula01\Senai.Asp.Net.Core.Mvc.MvcMovie\Senai.Asp.Net.Core.Mvc.MvcMovie.csproj", "{8AD8822E-1CB1-4AE0-B131-EDB4485F19E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Senai.Asp.Net.Core.Mvc.MvcMovie", "..\src\Aula01\Senai.Asp.Net.Core.Mvc.MvcMovie\Senai.Asp.Net.Core.Mvc.MvcMovie.csproj", "{8AD8822E-1CB1-4AE0-B131-EDB4485F19E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{6CD8337F-D63A-4367-8F5C-6696B183013D}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
