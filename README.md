@@ -25,10 +25,15 @@ Aulas sobre asp.net core mvc
 - [Roadmap](https://roadmap.sh/aspnet-core) 
 - [Exemplo de projeto completo](https://github.com/drhamann/PluralSight/tree/main/ArchNetCoreBestPratice) 
 - [Referencia Microsoft](https://learn.microsoft.com/pt-br/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-8.0) 
+- [Ezzy Learningg - Artigos sobre asp.net](https://www.ezzylearning.net/)
+- [Solo Learn](https://www.ezzylearning.net/)
+
 
 ## Livro
 
 - [Asp.net Core in action](https://github.com/drhamann/books/blob/216b0d05dcf424636c3c158bba2af251583718b6/asp-net-core-action-3rd.pdf)
+- [Asp.net core Pro 7](https://github.com/drhamann/books/blob/master/dokumen.pub_pro-aspnet-core-7-tenth-edition-meap-v4.pdf)
+- [Pro Asp.net core 6](https://github.com/drhamann/books/blob/master/Pro.ASP.NET.Core.6.9th.Edition.Adam.Freeman.Apress.9781484279564.EBooksWorld.ir.pdf)
 
 ## Desafios
 
@@ -40,8 +45,8 @@ Aulas sobre asp.net core mvc
 
 ## Repositorios
 
-- [Programação orientada a objetos](https://github.com/drhamann/poo-senai)
-- [C# Avançado](https://github.com/drhamann/senai-avancado)
+- [Programaï¿½ï¿½o orientada a objetos](https://github.com/drhamann/poo-senai)
+- [C# Avanï¿½ado](https://github.com/drhamann/senai-avancado)
 - [Web Api](https://github.com/drhamann/senai-webapi)
 - [Corrida de cachorros](https://github.com/drhamann/CorridaDeCachorros)
 - [Pizzaria do senai](https://github.com/drhamann/senai.pizzaria)
