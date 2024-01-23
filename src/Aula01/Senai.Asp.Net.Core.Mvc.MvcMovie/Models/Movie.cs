@@ -10,7 +10,7 @@ public class Movie
 
     [StringLength(60, MinimumLength = 3)]
     [Required]
-    public string? Title { get; set; }
+    public string Title { get; set; }
 
     [Display(Name = "Release Date")]
     [DataType(DataType.Date)]

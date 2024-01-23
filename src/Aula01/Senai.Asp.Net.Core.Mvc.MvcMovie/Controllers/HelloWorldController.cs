@@ -16,5 +16,10 @@ namespace Senai.Asp.Net.Core.Mvc.MvcMovie.Controllers
             ViewData["NumTimes"] = numTimes;
             return View();
         }
+
+        public IActionResult NovaTela()
+        {
+            return View();
+        }
     }
 }
