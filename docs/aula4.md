@@ -1,14 +1,16 @@
 # Aula 01 
 
-- Introdução
-- Conteudo
-- Sobre
-- Tutorial
+- Continuar criando corrida de cahorros com web
+- Iremos reforçar uso de:
+- controller
+- javascritp
+- bootstrap
+- partial view
+- lógica
+
 
 # Materiais 
 
-	-  https://learn.microsoft.com/pt-br/aspnet/core/mvc/overview?view=aspnetcore-8.0
-	-  https://learn.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-8.0&tabs=visual-studio
 
 ## Exemplo código
 
@@ -17,7 +19,7 @@
 ```
 ## Exercicio
 
-- 01 Fazer a corrida de cachorro em API
+- 01 Continuar corrida de cachorro em API
 - 02 Adicionar documentação no aplicativo da pizzaria 
 
  ## Próximos
