@@ -1,4 +1,4 @@
-# Aula 01 
+# Aula 04 
 
 - Continuar criando corrida de cahorros com web
 - Iremos reforçar uso de:
@@ -19,9 +19,9 @@
 ```
 ## Exercicio
 
-- 01 Continuar corrida de cachorro em API
-- 02 Adicionar documentação no aplicativo da pizzaria 
+- 01 Continuar corrida de cachorro 
+- 02 Modificar corrida de cachorro para não criar automaticamente os corredores e apostadores
 
  ## Próximos
 
-- [próximo](aula2.md)
+- [próximo](aula5.md)
