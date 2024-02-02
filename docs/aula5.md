@@ -1,9 +1,11 @@
 # Aula 01 
 
-- Introdução
-- Conteudo
-- Sobre
-- Tutorial
+- Rever até onde paramos na corrida de cachorro
+- Modificar corrida de cachorro para não criar automaticamente os corredores e apostadores
+- Ajustar regras da corrida de cachorro
+- Iniciar pizzaria usando asp.net mvc core
+- CRUD de pizza
+- Migrar banco sqlite para usar ef core
 
 # Materiais 
 
@@ -17,9 +19,9 @@
 ```
 ## Exercicio
 
-- 01 Fazer a corrida de cachorro em API
-- 02 Adicionar documentação no aplicativo da pizzaria 
+- 01 Criar CRUD de clientes
+- 02 Criar CRUD de pedidos
 
  ## Próximos
 
-- [próximo](aula2.md)
+- [próximo](aula6.md)
