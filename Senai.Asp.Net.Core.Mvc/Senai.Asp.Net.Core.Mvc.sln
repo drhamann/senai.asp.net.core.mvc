@@ -33,6 +33,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aula05", "Aula05", "{4FF9E2BA-0482-4AED-AFD9-E37B55B057F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senai.Asp.Net.Core.Mvc.Ponto", "Senai.Asp.Net.Core.Mvc.Ponto\Senai.Asp.Net.Core.Mvc.Ponto.csproj", "{73CAA673-ACDF-4013-AB77-1D4A08A07F84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{8AD8822E-1CB1-4AE0-B131-EDB4485F19E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AD8822E-1CB1-4AE0-B131-EDB4485F19E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AD8822E-1CB1-4AE0-B131-EDB4485F19E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CAA673-ACDF-4013-AB77-1D4A08A07F84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CAA673-ACDF-4013-AB77-1D4A08A07F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CAA673-ACDF-4013-AB77-1D4A08A07F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CAA673-ACDF-4013-AB77-1D4A08A07F84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BC7F06DF-CD58-4B7D-B86F-49BDA1B764CE} = {8FE15E3A-F530-4BFB-874C-3F2C4F2F788E}
 		{8AD8822E-1CB1-4AE0-B131-EDB4485F19E2} = {BC7F06DF-CD58-4B7D-B86F-49BDA1B764CE}
+		{4FF9E2BA-0482-4AED-AFD9-E37B55B057F6} = {8FE15E3A-F530-4BFB-874C-3F2C4F2F788E}
+		{73CAA673-ACDF-4013-AB77-1D4A08A07F84} = {4FF9E2BA-0482-4AED-AFD9-E37B55B057F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3AF4F095-1041-4B6F-AF77-1F173E912D11}

@@ -1,0 +1,31 @@
+﻿@model Funcionario
+
+@{
+} <div class="container mt-4">
+    <h2>Detalhes do Funcionário</h2>
+
+    <dl class="row">
+        <dt class="col-sm-3">ID:</dt>
+        <dd class="col-sm-9">@Model.Id</dd>
+
+        <dt class="col-sm-3">Nome:</dt>
+        <dd class="col-sm-9">@Model.Nome</dd>
+
+        <dt class="col-sm-3">Idade:</dt>
+        <dd class="col-sm-9">@Model.Idade</dd>
+
+        <dt class="col-sm-3">CPF:</dt>
+        <dd class="col-sm-9">@Model.CPF</dd>
+
+        <dt class="col-sm-3">RG:</dt>
+        <dd class="col-sm-9">@Model.RG</dd>
+
+        <dt class="col-sm-3">Telefone:</dt>
+        <dd class="col-sm-9">@Model.Telefone</dd>
+
+        <dt class="col-sm-3">Email:</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+    </dl>
+
+    <a href="@Url.Action("Index", "Funcionario")" class="btn btn-primary">Voltar à Lista de Funcionários</a>
+</div>
