@@ -27,36 +27,58 @@ namespace Senai.Asp.Net.Core.Mvc.Ponto.Controllers
             return View(Funcionario);
         }
         [HttpPost]
-        public ActionResult AdicionarRegistro(DateTime entrada, DateTime saida,TipoDeRegistro tipo)
+        public ActionResult AdicionarRegistro(DateTime data)
         {
-            // Encontre o ponto correspondente à data atual ou crie um novo ponto
-            Models.Ponto ponto = Funcionario.ListaDePontos.FirstOrDefault(p => p.DataRegistro.Date.DayOfYear == DateTime.Now.DayOfYear);
+            // Encontre o ponto correspondente à data informada ou crie um novo ponto
+            Models.Ponto ponto = Funcionario.ListaDePontos.FirstOrDefault(p => p.DataRegistro.Date == data.Date);
 
             if (ponto == null)
             {
-                ponto = new Models.Ponto { Registros = new List<Registro>() };
+                ponto = new Models.Ponto { DataRegistro = data, Registros = new List<Registro>() };
                 Funcionario.ListaDePontos.Add(ponto);
             }
 
-            // Crie um novo registro
-            Registro novoRegistro = new Registro
-            {
-                Entrada = entrada,
-                Saida = saida,
-                Tipo = tipo
-            };
+            // Verifique se já existe um registro para a data informada
+            Registro registroExistente = ponto.Registros.FirstOrDefault(r => r.Entrada.Date == data.Date);
 
-            // Adicione o registro ao ponto
-            ponto.Registros.Add(novoRegistro);
+            if (registroExistente != null)
+            {
+                // Já existe um registro para a data informada, atualize a saída
+                registroExistente.Saida = DateTime.Now; // Você pode ajustar isso conforme necessário
+            }
+            else
+            {
+                // Não existe um registro para a data informada, crie um novo
+                Registro novoRegistro = new Registro();
+
+                // Determine se é uma entrada ou saída com base no horário e tempo do ponto
+                if (DateTime.Now.TimeOfDay < Funcionario.PerfilDeTrabalho.InicioIntervalo.TimeOfDay)
+                {
+                    // Antes do início do intervalo, considera como entrada
+                    novoRegistro.Entrada = DateTime.Now;
+                    novoRegistro.Tipo = TipoDeRegistro.Normal;
+                }
+                else if (DateTime.Now.TimeOfDay > Funcionario.PerfilDeTrabalho.HoraFim.TimeOfDay)
+                {
+                    // Após o término do expediente, considera como saída
+                    novoRegistro.Saida = DateTime.Now;
+                    novoRegistro.Tipo = TipoDeRegistro.Noturno;
+                }
+                else
+                {
+                    // Durante o expediente, considera como novo (sem entrada ou saída específica)
+                    novoRegistro.Tipo = TipoDeRegistro.HoraExtra;
+                }
+
+                // Adicione o novo registro ao ponto
+                ponto.Registros.Add(novoRegistro);
+            }
 
             // Salve as alterações no banco de dados ou na fonte de dados
             // SalvarAlteracoesNoBancoDeDados(funcionario);
 
             // Redirecione de volta à página de detalhes do funcionário
-
-
-            // Se algo der errado, redirecione para a página inicial ou trate de acordo com sua lógica
-            return RedirectToAction("Index");
+            return RedirectToAction("Detalhes", new { id = Funcionario.Id });
         }
     }
 }
