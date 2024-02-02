@@ -1,14 +1,29 @@
 ﻿namespace Senai.Asp.Net.Core.Mvc.Ponto.Models
 {
     public class Ponto
-    {       
+    {
+        public Ponto()
+        {
+            DataRegistro = DateTime.Now;
+        }
+        public DateTime DataRegistro { get; set; }
         public List<Registro> Registros { get; set; }
     }
     public class Registro
     {
         public DateTime Entrada { get; set; }
         public DateTime Saida { get; set; }
-        public TimeSpan Tempo { get; set; }
+        public TimeSpan Tempo
+        {
+            get
+            {
+                if(Saida == null)
+                {
+                    return TimeSpan.Zero;
+                }
+                return Saida - Entrada;
+            }
+        }
         public TipoDeRegistro Tipo { get; set; }
     }
     public enum TipoDeRegistro
@@ -24,7 +39,21 @@
         public Funcionario()
         {
             PerfilDeTrabalho = PerfilDeTrabalho.PerfilDeTrabalhoPadrao();
-            ListaDePontos = new List<Ponto>();
+            ListaDePontos = new List<Ponto>()
+            {
+                new Ponto()
+                {
+                    Registros = new List<Registro>()
+                    {
+                        new Registro()
+                        {
+                            Entrada = DateTime.Now,
+                            Saida = DateTime.Now.AddHours(1),
+                            Tipo = TipoDeRegistro.Normal
+                        }
+                    }
+                }
+            };
         }
         public int Id { get; set; }
         public string Nome { get; set; }

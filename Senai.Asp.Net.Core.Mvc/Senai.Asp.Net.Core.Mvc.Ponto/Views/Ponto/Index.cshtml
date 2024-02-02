@@ -25,7 +25,68 @@
 
         <dt class="col-sm-3">Email:</dt>
         <dd class="col-sm-9">@Model.Email</dd>
+
+        <!-- Tabela de Pontos e Registros -->
+        <!-- Formulário para Adicionar Novo Registro -->
+        <form method="post" action="@Url.Action("AdicionarRegistro", "Ponto")">
+            <h3>Adicionar Novo Registro</h3>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="entrada">Entrada:</label>
+                    <input type="datetime-local" class="form-control" id="entrada" name="entrada" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="saida">Saída:</label>
+                    <input type="datetime-local" class="form-control" id="saida" name="saida" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="tipo">Tipo:</label>
+                    <select class="form-control" id="tipo" name="tipo" required>
+                        <option value="0">Normal</option>
+                        <option value="1">Noturno</option>
+                        <option value="2">Intervalo</option>
+                        <option value="3">Desconhecido</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar Registro</button>
+        </form>
+
+        <dt class="col-sm-3">Pontos:</dt>
+        <dd class="col-sm-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Entrada</th>
+                        <th>Saída</th>
+                        <th>Tempo</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ponto in Model.ListaDePontos)
+                    {
+                        <tr>
+                            <td colspan="5"><strong>Data do Ponto:</strong> @ponto.DataRegistro.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        @foreach (var registro in ponto.Registros)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@registro.Entrada.ToString("HH:mm:ss")</td>
+                                <td>@registro.Saida.ToString("HH:mm:ss")</td>
+                                <td>@registro.Tempo.TotalHours horas</td>
+                                <td>@registro.Tipo</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </dd>
+
     </dl>
+
 
     <a href="@Url.Action("Index", "Funcionario")" class="btn btn-primary">Voltar à Lista de Funcionários</a>
 </div>
