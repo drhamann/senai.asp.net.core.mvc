@@ -30,13 +30,16 @@
         <!-- Formulário para Adicionar Novo Registro -->
         <form method="post" action="@Url.Action("AdicionarRegistro", "Ponto")">
             <h3>Adicionar Novo Registro</h3>
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="data">Data:</label>
-                    <input type="date" class="form-control" id="data" name="data" required>
+                    <input type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" class="form-control" id="data" name="data" required>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" onclick="adicionarRegistro()">Adicionar Registro</button>
+            <br />
+            <button type="submit" class="btn btn-primary" >Adicionar Registro</button>
+            <br />
         </form>
 
         <dt class="col-sm-3">Pontos:</dt>
@@ -75,5 +78,4 @@
     </dl>
 
 
-    <a href="@Url.Action("Index", "Funcionario")" class="btn btn-primary">Voltar à Lista de Funcionários</a>
 </div>

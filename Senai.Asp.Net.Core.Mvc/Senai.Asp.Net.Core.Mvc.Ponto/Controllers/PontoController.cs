@@ -20,6 +20,31 @@ namespace Senai.Asp.Net.Core.Mvc.Ponto.Controllers
                     Telefone = "(11) 1234-5678",
                     Email = "joao.silva@example.com"
                 };
+                Registro registro1 = new()
+                {
+                    Entrada = new DateTime(638396928500000000),
+                    Saida = new DateTime(638397072500000000),
+                    Tipo = TipoDeRegistro.Normal
+                };
+                Registro registroIntervalo = new()
+                {
+                    Entrada = new DateTime(638397072500000000),
+                    Saida = new DateTime(638397144000000000),
+                    Tipo = TipoDeRegistro.Intervalo
+                };
+                Registro registro2 = new()
+                {
+                    Entrada = new DateTime(638397144000000000),
+                    Saida = new DateTime(638397288000000000),
+                    Tipo = TipoDeRegistro.Diurno
+                };
+
+                Models.Ponto ponto = new(new DateTime(638397144000000000));
+                ponto.Registros.Add(registro1);
+                ponto.Registros.Add(registro2);
+
+                Funcionario.ListaDePontos.Add(ponto);
+
             }
         }
         public IActionResult Index()
@@ -39,34 +64,31 @@ namespace Senai.Asp.Net.Core.Mvc.Ponto.Controllers
             }
 
             // Verifique se já existe um registro para a data informada
-            Registro registroExistente = ponto.Registros.FirstOrDefault(r => r.Entrada.Date == data.Date);
+            Registro registroExistente = 
+                ponto.Registros.FirstOrDefault
+                (r => r.Entrada.Date.DayOfYear == data.Date.DayOfYear && r.Saida == DateTime.MinValue);
 
             if (registroExistente != null)
             {
                 // Já existe um registro para a data informada, atualize a saída
-                registroExistente.Saida = DateTime.Now; // Você pode ajustar isso conforme necessário
+                registroExistente.Saida = data; // Você pode ajustar isso conforme necessário
             }
             else
             {
                 // Não existe um registro para a data informada, crie um novo
-                Registro novoRegistro = new Registro();
-
+                Registro novoRegistro = new ();
+                novoRegistro.Entrada = data;
                 // Determine se é uma entrada ou saída com base no horário e tempo do ponto
                 if (DateTime.Now.TimeOfDay < Funcionario.PerfilDeTrabalho.InicioIntervalo.TimeOfDay)
                 {
-                    // Antes do início do intervalo, considera como entrada
-                    novoRegistro.Entrada = DateTime.Now;
                     novoRegistro.Tipo = TipoDeRegistro.Normal;
                 }
                 else if (DateTime.Now.TimeOfDay > Funcionario.PerfilDeTrabalho.HoraFim.TimeOfDay)
                 {
-                    // Após o término do expediente, considera como saída
-                    novoRegistro.Saida = DateTime.Now;
                     novoRegistro.Tipo = TipoDeRegistro.Noturno;
                 }
                 else
                 {
-                    // Durante o expediente, considera como novo (sem entrada ou saída específica)
                     novoRegistro.Tipo = TipoDeRegistro.HoraExtra;
                 }
 
@@ -78,7 +100,7 @@ namespace Senai.Asp.Net.Core.Mvc.Ponto.Controllers
             // SalvarAlteracoesNoBancoDeDados(funcionario);
 
             // Redirecione de volta à página de detalhes do funcionário
-            return RedirectToAction("Detalhes", new { id = Funcionario.Id });
+            return RedirectToAction("Index");
         }
     }
 }

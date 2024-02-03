@@ -5,6 +5,12 @@
         public Ponto()
         {
             DataRegistro = DateTime.Now;
+            Registros = new List<Registro>();
+        }
+        public Ponto(DateTime dateTime)
+        {
+            DataRegistro = dateTime;
+            Registros = new List<Registro>();
         }
         public DateTime DataRegistro { get; set; }
         public List<Registro> Registros { get; set; }
@@ -32,7 +38,8 @@
         Noturno = 1,
         Intervalo = 2,
         Desconhecido = 3,
-        HoraExtra = 4
+        HoraExtra = 4,
+        Diurno = 5
     }
     public class Funcionario
     {
