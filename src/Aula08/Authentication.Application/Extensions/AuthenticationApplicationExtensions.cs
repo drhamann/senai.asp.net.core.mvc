@@ -6,7 +6,7 @@ namespace Authentication.Application.Extensions
 {
     public static class AuthenticationApplicationExtensions
     {
-        public static void AddApplicationExtensions( this IServiceCollection services)
+        public static void AddApplicationExtensions(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
