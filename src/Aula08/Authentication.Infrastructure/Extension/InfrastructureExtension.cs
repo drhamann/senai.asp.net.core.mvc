@@ -16,7 +16,7 @@ namespace Authentication.Infrastructure.Extension
             services.Configure<Settings>(configuration.GetSection("Settings"));
 
             var connectionStrings = configuration.GetValue<string>("ConnectionStringMaster");
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionStrings));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionStrings));
         }
     }
 }
