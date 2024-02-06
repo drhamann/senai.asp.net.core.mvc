@@ -1,4 +1,4 @@
-﻿namespace Senai.Asp.Net.Core.Mvc.Ponto.Models
+﻿namespace Senai.Asp.Net.Core.Mvc.Ponto.Views.Models
 {
     public class Ponto
     {
@@ -23,7 +23,7 @@
         {
             get
             {
-                if(Saida == null)
+                if (Saida == null)
                 {
                     return TimeSpan.Zero;
                 }

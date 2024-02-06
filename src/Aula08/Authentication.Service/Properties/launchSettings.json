@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Authentication.Service": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56095;http://localhost:56094"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-namespace Senai.Asp.Net.Core.Mvc.Ponto.Models
+namespace Senai.Asp.Net.Core.Mvc.Ponto.Views.Models
 {
     public class ErrorViewModel
     {

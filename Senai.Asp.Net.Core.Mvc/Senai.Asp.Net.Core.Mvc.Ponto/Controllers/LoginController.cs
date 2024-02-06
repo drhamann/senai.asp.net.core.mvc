@@ -1,41 +1,14 @@
-﻿# Aula 01 
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using System.Text;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-- Autenticação
-
-# Materiais 
-
-	-  https://github.com/drhamann/senai.pizzaria
-	-  https://github.com/drhamann/senai.pizzaria/tree/main/ProjetoEmTresCamadas.Pizzaria.Mvc
-
-## Nuget
-```
- <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.1" />
-  </ItemGroup>
- ```
- ## Alteração program
-
- ```
- // Adicionar serviços de criação do HttpClient 
-builder.Services.AddHttpClient();
-
-// Adicionar schema de autenticação
-builder.Services.AddAuthentication(options =>
+namespace Senai.Asp.Net.Core.Mvc.Ponto.Controllers
 {
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-}).AddCookie(options =>
-{
-    options.LoginPath = "/Login/Index"; // Defenir página de login
-    options.LogoutPath = "/Login/Logout"; // Defenir página logout
-});
-
- ```
-
- ## Controlador de login
- ```
-  public class LoginController : Controller
+    public class LoginController : Controller
     {
         private readonly IConfiguration _configuration;
         private readonly HttpClient _httpClient;
@@ -140,7 +113,7 @@ builder.Services.AddAuthentication(options =>
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authProperties);
 
                         // Redirect to another page or return success
-                        return RedirectToAction("Index", "Pizzas");
+                        return RedirectToAction("Index", "Ponto");
                     }
                     else
                     {
@@ -159,57 +132,4 @@ builder.Services.AddAuthentication(options =>
 
         }
     }
- ```
-
- ## Index login
- ```
- <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="text-center">🚀 Login</h4>
-                </div>
-                <div class="card-body">
-                    <form asp-controller="Login" asp-action="Index" method="post">
-                        <div class="form-group">
-                            <label for="username">Email:</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Senha:</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <br />
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
- ```
-
- ## Arquivo de configuração
- ```
- {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-
-  "AuthenticationApiEndpoint": "https://localhost:56095/api/autenticador/login" // Altere pelo o endereço da sua api de autenticação
-
 }
- ```
-
-## Exercicio
-
-- 01 Aplicar autenticação no seu projeto
-
- ## Próximos
-
-- [próximo](aula9.md)

@@ -21,7 +21,24 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Ponto" asp-action="Index">Home</a>
-                        </li>                        
+                        </li> 
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <span class="navbar-text">
+                                    🧑 Welcome, @User.Identity.Name
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Logout">🚪 Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Login">🚀 Login</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Senai.Asp.Net.Core.Mvc.Ponto.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Senai.Asp.Net.Core.Mvc.Ponto.Views.Models;
 
 namespace Senai.Asp.Net.Core.Mvc.Ponto.Controllers
 {
+    [Authorize]
     public class PontoController : Controller
     {
         public static Funcionario Funcionario { get; set; }
@@ -39,7 +41,7 @@ namespace Senai.Asp.Net.Core.Mvc.Ponto.Controllers
                     Tipo = TipoDeRegistro.Diurno
                 };
 
-                Models.Ponto ponto = new(new DateTime(638397144000000000));
+                Views.Models.Ponto ponto = new(new DateTime(638397144000000000));
                 ponto.Registros.Add(registro1);
                 ponto.Registros.Add(registro2);
 
@@ -55,11 +57,11 @@ namespace Senai.Asp.Net.Core.Mvc.Ponto.Controllers
         public ActionResult AdicionarRegistro(DateTime data)
         {
             // Encontre o ponto correspondente à data informada ou crie um novo ponto
-            Models.Ponto ponto = Funcionario.ListaDePontos.FirstOrDefault(p => p.DataRegistro.Date == data.Date);
+            Views.Models.Ponto ponto = Funcionario.ListaDePontos.FirstOrDefault(p => p.DataRegistro.Date == data.Date);
 
             if (ponto == null)
             {
-                ponto = new Models.Ponto { DataRegistro = data, Registros = new List<Registro>() };
+                ponto = new Senai.Asp.Net.Core.Mvc.Ponto.Views.Models.Ponto { DataRegistro = data, Registros = new List<Registro>() };
                 Funcionario.ListaDePontos.Add(ponto);
             }
 
