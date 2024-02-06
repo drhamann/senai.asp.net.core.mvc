@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'Senai.Asp.Net.Core.Mvc/Senai.Asp.Net.Core.Mvc.Ponto/**' 
   workflow_dispatch:
 
 jobs:
