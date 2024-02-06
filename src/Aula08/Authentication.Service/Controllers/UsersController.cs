@@ -6,7 +6,7 @@ namespace Authentication.Controllers
 {
     [Route("api/Users")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
