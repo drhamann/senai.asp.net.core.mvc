@@ -17,8 +17,8 @@ namespace Authentication.Infrastructure.Extension
             services.Configure<Settings>(configuration.GetSection("Settings"));           
             services.Configure<ConnectionStrings>(configuration.GetSection("ConnectionStrings"));
 
-            var connectionStrings = configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionStrings.ConnectionStringMaster));
+            var connectionStrings = configuration.GetValue<string>("ConnectionStringMaster");
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionStrings));
         }
     }
 }
