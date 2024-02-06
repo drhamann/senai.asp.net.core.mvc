@@ -29,13 +29,13 @@ jobs:
         run: dotnet build --configuration Release src/Aula08/Authentication.Service/Authentication.Service.csproj
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp src/Aula08/Authentication.Service/Authentication.Service.csproj
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/autentication src/Aula08/Authentication.Service/Authentication.Service.csproj
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{env.DOTNET_ROOT}}/autentication
 
   deploy:
     runs-on: ubuntu-latest

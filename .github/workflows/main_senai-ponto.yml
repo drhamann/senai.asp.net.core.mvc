@@ -28,12 +28,12 @@ jobs:
         run: dotnet build --configuration Release Senai.Asp.Net.Core.Mvc/Senai.Asp.Net.Core.Mvc.Ponto/Senai.Asp.Net.Core.Mvc.Ponto.csproj
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp Senai.Asp.Net.Core.Mvc/Senai.Asp.Net.Core.Mvc.Ponto/Senai.Asp.Net.Core.Mvc.Ponto.csproj
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/ponto Senai.Asp.Net.Core.Mvc/Senai.Asp.Net.Core.Mvc.Ponto/Senai.Asp.Net.Core.Mvc.Ponto.csproj
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{env.DOTNET_ROOT}}/ponto
 
   deploy:
     runs-on: ubuntu-latest
