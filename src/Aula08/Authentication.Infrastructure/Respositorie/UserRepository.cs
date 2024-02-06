@@ -1,7 +1,6 @@
 ﻿using Authentication.Domain.Entities;
 using Authentication.Domain.Repositories;
 using Authentication.Infrastructure.Respositorie;
-using Microsoft.Extensions.Options;
 
 namespace Authentication.Infra
 {

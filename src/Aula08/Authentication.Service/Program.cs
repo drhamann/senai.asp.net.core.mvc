@@ -1,13 +1,12 @@
 using Authentication.Application.Extensions;
 using Authentication.Extensions;
 using Authentication.Infra;
-using Authentication.Infrastructure;
 using Authentication.Infrastructure.Extension;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using NLog;
 using NLog.Web;
+using System.Text;
 
 var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
@@ -15,7 +14,6 @@ logger.Debug("init main");
 var builder = WebApplication.CreateBuilder(args);
 //builder.Host.UseWindowsService();
 var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
-var connectionStrings = builder.Configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
 var key = Encoding.ASCII.GetBytes(settings.Secret);
 
 builder.Host.UseNLog();
@@ -27,22 +25,22 @@ builder.Services.AddAuthentication(x =>
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(x =>
 {
-   x.RequireHttpsMetadata = false;
-   x.SaveToken = true;
-   x.TokenValidationParameters = new TokenValidationParameters
-   {
-       ValidateIssuerSigningKey = true,
-       IssuerSigningKey = new SymmetricSecurityKey(key),
-       ValidateIssuer = false,
-       ValidateAudience = false
-   };
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
 });
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwagger();
 builder.Services.AddInfraExtensions(builder.Configuration);
 builder.Services.AddApplicationExtensions();
-builder.Services.AddLogging( configure =>
+builder.Services.AddLogging(configure =>
 {
     configure.AddConsole();
 });
