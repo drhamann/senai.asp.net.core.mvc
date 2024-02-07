@@ -11,6 +11,21 @@
 ## Exemplo código
 
 ```
+//Adicionar injeção de IHttpClientFactory
+// Adicionar serviços de criação do HttpClient 
+builder.Services.AddHttpClient();
+
+//Uso em construtor 
+ public PizzasController(IConfiguration configuration, IHttpClientFactory httpClientFactory)
+        {
+            _httpClient = httpClientFactory.CreateClient();
+            Configuration = configuration;
+            PizzaApiEndpoint = Configuration["PizzaApiEndpoint"] + "/api/pizza";
+        }
+
+```
+
+```
 // Post
  var requestBody = $"{{ \"id\": 0,\"Sabor\": \"{pizza.Sabor}\"," +
               $" \"TamanhoDePizza\": {(int)pizza.TamanhoDePizza}," +
