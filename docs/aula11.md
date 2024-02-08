@@ -2,12 +2,14 @@
 
 - Uso de memoria
 - Midleware
+- Filter
 - Partial
 
 # Materiais 
 
 - https://learn.microsoft.com/pt-br/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
-
+- https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-8.0
+- https://learn.microsoft.com/pt-br/aspnet/core/mvc/views/partial?view=aspnetcore-8.0
 
 ## Exemplo código
 
@@ -108,6 +110,45 @@ app.UseMiddleware<ValidarTokenMiddleware>();
             await _next(context);
         }
     }
+```
+
+```
+//Criar classe para usar como filtro 
+
+public class AuthenticationTokenFilter : Attribute, IActionFilter
+    {
+        public void OnActionExecuting(ActionExecutingContext context)
+        {
+            // Do something before the action executes.
+        }
+
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
+            // Do something after the action executes.
+        }
+    }
+
+    //Usar filtro via tag em controlador
+     [AuthenticationTokenFilter]
+    public class LoginController : Controller
+    {
+    ...
+    }
+```
+
+```
+//Uso global
+
+public void ConfigureServices(IServiceCollection services) 
+    { 
+        // Adiciona serviços do framework
+        services.AddMvc(options=> { 
+        //adicionado por instância
+        options.Filters.Add(new AuthenticationTokenFilter()); 
+        //adicionado por tipo 
+        options.Filters.Add(typeof(AuthenticationTokenFilter)); 
+        }); 
+    } 
 ```
 
 ```
