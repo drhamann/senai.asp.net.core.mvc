@@ -47,6 +47,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Domain", "..\src\Aula08\Authentication.Domain\Authentication.Domain.csproj", "{4CB6A407-7194-424B-B03C-D2DE1D31B2CB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aula12", "Aula12", "{979B7032-467D-463F-BDFF-851B3A09B64C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppEF", "..\src\Aula12\ConsoleAppEF\ConsoleAppEF.csproj", "{A14A74E7-4E7C-44D1-BF1B-D899A0615A22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,10 @@ Global
 		{4CB6A407-7194-424B-B03C-D2DE1D31B2CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CB6A407-7194-424B-B03C-D2DE1D31B2CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CB6A407-7194-424B-B03C-D2DE1D31B2CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A14A74E7-4E7C-44D1-BF1B-D899A0615A22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14A74E7-4E7C-44D1-BF1B-D899A0615A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A14A74E7-4E7C-44D1-BF1B-D899A0615A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14A74E7-4E7C-44D1-BF1B-D899A0615A22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +99,8 @@ Global
 		{7344AB29-49EA-4DD1-A74C-6D8EFD6B2F7F} = {EDF748D8-F9DC-4699-9255-22A94F9DF038}
 		{F82A821A-5730-4FD8-8055-E6FA3C2A3741} = {EDF748D8-F9DC-4699-9255-22A94F9DF038}
 		{4CB6A407-7194-424B-B03C-D2DE1D31B2CB} = {EDF748D8-F9DC-4699-9255-22A94F9DF038}
+		{979B7032-467D-463F-BDFF-851B3A09B64C} = {8FE15E3A-F530-4BFB-874C-3F2C4F2F788E}
+		{A14A74E7-4E7C-44D1-BF1B-D899A0615A22} = {979B7032-467D-463F-BDFF-851B3A09B64C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3AF4F095-1041-4B6F-AF77-1F173E912D11}
