@@ -191,6 +191,12 @@ public class YourDbContext : DbContext
 
 // Configuração para remover  
 
+ /*modelBuilder
+        .Entity<Blog>()
+        .HasOne(e => e.Owner)
+        .WithOne(e => e.OwnedBlog)
+        .OnDelete(DeleteBehavior.ClientCascade)
+*/
 ```
 
 Crud básico
