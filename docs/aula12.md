@@ -4,8 +4,12 @@
 
 # Materiais 
 
+    
+    - https://learn.microsoft.com/pt-br/dotnet/csharp/linq/
 	- https://learn.microsoft.com/pt-br/ef/
 	- https://learn.microsoft.com/pt-br/ef/core/
+    - https://learn.microsoft.com/pt-br/ef/core/modeling/relationships/many-to-many
+    - https://learn.microsoft.com/pt-br/ef/core/saving/cascade-delete
 
 ### Nuget
 
@@ -150,7 +154,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         .IsRequired();
 }
 
-//n -n https://learn.microsoft.com/pt-br/ef/core/modeling/relationships/many-to-many
+//n -n 
 public class Student
 {
     public int StudentId { get; set; }
@@ -185,7 +189,7 @@ public class YourDbContext : DbContext
     }
 }
 
-// Configuração para remover https://learn.microsoft.com/pt-br/ef/core/saving/cascade-delete 
+// Configuração para remover  
 
 ```
 
