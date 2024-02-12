@@ -9,12 +9,24 @@
 
 ### Nuget
 
+
 ```
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet tool install --global dotnet-ef
 dotnet add package Microsoft.EntityFrameworkCore.Design
+
+// Code first
 dotnet ef migrations add InitialCreate
-dotnet ef database update
+dotnet ef database update 
+
+```
+
+Gerar contexto de banco já criado
+```
+//Ex: Use o console após ter instalado as ferramentas
+//Install-Package Microsoft.EntityFrameworkCore.SqlServer
+//Install-Package Microsoft.EntityFrameworkCore.Tools
+Scaffold-DbContext "Server=NomeDoServidor;Database=NomeDoBancoDeDados;User Id=NomeDeUsuario;Password=SuaSenha;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context MeuContexto
 
 ```
 
@@ -77,6 +89,9 @@ public class ApplicationDbContext : DbContext
             builder.Property(u => u.Password).IsRequired();
         }
     }
+
+    //context.Database.Migrate(); // Apply migrations
+
 
     // Transaction
 
@@ -172,12 +187,189 @@ public class YourDbContext : DbContext
 
 // Configuração para remover https://learn.microsoft.com/pt-br/ef/core/saving/cascade-delete 
 
+```
 
-## Exemplo código
+Crud básico
+```
+var optionsBuilder = new DbContextOptionsBuilder<YourDbContext>();
+        optionsBuilder.UseSqlServer("YourConnectionString");
+
+        using (var context = new YourDbContext(optionsBuilder.Options))
+        {
+            // CREATE
+            var newStudent = new Student { Name = "John Doe" };
+            context.Students.Add(newStudent);
+            context.SaveChanges();
+            Console.WriteLine("Novo estudante criado com ID: " + newStudent.StudentId);
+
+            // READ
+            Console.WriteLine("\nTodos os estudantes:");
+            ListAllStudents(context);
+
+            // UPDATE
+            var studentToUpdate = context.Students.FirstOrDefault();
+            if (studentToUpdate != null)
+            {
+                studentToUpdate.Name = "Jane Smith";
+                context.SaveChanges();
+                Console.WriteLine("\nEstudante atualizado com sucesso.");
+                ListAllStudents(context);
+            }
+
+            // DELETE
+            var studentToDelete = context.Students.FirstOrDefault(s => s.Name == "John Doe");
+            if (studentToDelete != null)
+            {
+                context.Students.Remove(studentToDelete);
+                context.SaveChanges();
+                Console.WriteLine("\nEstudante excluído com sucesso.");
+                ListAllStudents(context);
+            }
+        }
+```
+
+Padrão repository
+
+```
+using System;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
+public interface IRepository<TEntity> where TEntity : class
+{
+    IQueryable<TEntity> GetAll();
+    IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
+    Task<TEntity> GetByIdAsync(int id);
+    Task AddAsync(TEntity entity);
+    void Update(TEntity entity);
+    void Delete(TEntity entity);
+}
+
+public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+{
+    private readonly DbContext _context;
+    private readonly DbSet<TEntity> _dbSet;
+
+    public Repository(DbContext context)
+    {
+        _context = context;
+        _dbSet = context.Set<TEntity>();
+    }
+
+    public IQueryable<TEntity> GetAll()
+    {
+        return _dbSet.AsQueryable();
+    }
+
+    public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+    {
+        return _dbSet.Where(predicate);
+    }
+
+    public async Task<TEntity> GetByIdAsync(int id)
+    {
+        return await _dbSet.FindAsync(id);
+    }
+
+    public async Task AddAsync(TEntity entity)
+    {
+        await _dbSet.AddAsync(entity);
+    }
+
+    public void Update(TEntity entity)
+    {
+        _dbSet.Attach(entity);
+        _context.Entry(entity).State = EntityState.Modified;
+    }
+
+    public void Delete(TEntity entity)
+    {
+        if (_context.Entry(entity).State == EntityState.Detached)
+        {
+            _dbSet.Attach(entity);
+        }
+        _dbSet.Remove(entity);
+    }
+}
+
+
+public class Student
+{
+    public int StudentId { get; set; }
+    public string Name { get; set; }
+}
+
+public class StudentRepository : Repository<Student>, IStudentRepository
+{
+    public StudentRepository(YourDbContext context) : base(context)
+    {
+        await context.Database.EnsureCreatedAsync();
+
+        // Seed some initial data when the StudentRepository is constructed
+        SeedDataAsync().Wait(); // You can also make Main method async and await it
+    }
+
+    private async Task SeedDataAsync()
+    {
+        // Check if any students exist
+        if (await GetAll().AnyAsync())
+        {
+            return; // Data has already been seeded
+        }
+
+        // Seed some students
+        await AddAsync(new Student { Name = "John Doe" });
+        await AddAsync(new Student { Name = "Jane Smith" });
+
+        // Save changes
+        await SaveChangesAsync();
+    }
+}
+
+
+public class YourDbContext : DbContext
+{
+    public YourDbContext(DbContextOptions<YourDbContext> options) : base(options) { }
+    
+}
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<YourDbContext>();
+        optionsBuilder.UseSqlite("Data Source=students.db"); // SQLite connection string
+
+
+        using (var context = new YourDbContext(optionsBuilder.Options))
+        {
+            var studentRepository = new StudentRepository(context);
+
+            // Create
+            var newStudent = new Student { Name = "John Doe" };
+            await studentRepository.AddAsync(newStudent);
+
+            // Read
+            var john = await studentRepository.GetByIdAsync(newStudent.StudentId);
+            Console.WriteLine($"Student ID: {john.StudentId}, Name: {john.Name}");
+
+            // Update
+            john.Name = "Jane Smith";
+            studentRepository.Update(john);
+
+            // Delete
+            studentRepository.Delete(john);
+
+            await context.SaveChangesAsync();
+        }
+    }
+}
 
 ```
 
-```
+
 ## Exercicio
 
 - 01 Aplicar EF no projeto
