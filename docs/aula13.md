@@ -1,9 +1,7 @@
 # Aula 13
 
-- Introdução
-- Conteudo
-- Sobre
-- Tutorial
+- Cache
+- Carrinho
 
 # Materiais 
 
@@ -17,9 +15,8 @@
 ```
 ## Exercicio
 
-- 01 Fazer a corrida de cachorro em API
-- 02 Adicionar documentação no aplicativo da pizzaria 
+- 01 Adicionar carrinho na pizzaria
 
  ## Próximos
 
-- [próximo](aula2.md)
+- [próximo](aula14.md)
