@@ -1,6 +1,7 @@
 ﻿using Authentication.Domain.Entities;
 using Authentication.Domain.Repositories;
 using Authentication.Infrastructure.Respositorie;
+using Microsoft.EntityFrameworkCore;
 
 namespace Authentication.Infra
 {
@@ -97,6 +98,12 @@ namespace Authentication.Infra
                 return e.Message;
             }
             return "Usuario não encontrado";
+        }
+
+        public async Task<User> GetById(Guid id)
+        {
+            return await AppDbContext.Users.FirstOrDefaultAsync(x => x.Id.Equals(id));
+
         }
     }
 }

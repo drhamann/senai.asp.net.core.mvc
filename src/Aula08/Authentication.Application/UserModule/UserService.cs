@@ -53,6 +53,10 @@ namespace Authentication.Application.UserModule
                     error += resultError + "\r\n";
                 }
             }
+            if(await _userRepository.Check(user.Email))
+            {
+                error += "\r\n Dados invalidos";
+            }
             if (String.IsNullOrEmpty(error))
             {
                 var userVo = _mapper.Map<User>(user);
@@ -65,14 +69,31 @@ namespace Authentication.Application.UserModule
             return error;
         }
 
-        public Task<string> Delete(Guid id)
+        public async Task<string> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetById(id);
+            string error = string.Empty;
+            if (user == null)
+            {
+                error = ("Não encontrado");
+            }
+
+            await _userRepository.Delete(id);
+
+            return error;
         }
 
-        public Task<string> Update(UserModel user)
+        public async Task<string> Update(UserModel usermodel)
         {
-            throw new NotImplementedException();
+            var user = _mapper.Map<User>(usermodel);
+            string error = string.Empty;
+            if (user == null)
+            {
+                error = ("Não encontrado");
+                return error;
+            }
+            return await _userRepository.Update(user);
+
         }           
     }
 }

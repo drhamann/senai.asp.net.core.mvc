@@ -77,6 +77,11 @@ namespace Authentication.Infrastructure.Respositorie
             return users;
         }
 
+        public async Task<User> GetById(Guid id)
+        {
+           return await _userRepository.GetById(id);
+        }
+
         public Task<string> Update(User user)
         {
            return _userRepository.Update(user);

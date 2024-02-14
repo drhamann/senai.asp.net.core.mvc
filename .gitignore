@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/src/Aula08/Authentication.Service/Authentication.db-shm
+/src/Aula08/Authentication.Service/Authentication.db-wal

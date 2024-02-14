@@ -34,6 +34,7 @@ namespace Authentication.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Create(UserModel userCreateRequest)
         {
             string error =  await _userService.Create(userCreateRequest);

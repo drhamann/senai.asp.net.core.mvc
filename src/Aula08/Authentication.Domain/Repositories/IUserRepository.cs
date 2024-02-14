@@ -5,6 +5,7 @@ namespace Authentication.Domain.Repositories
     public interface IUserRepository
     {
         Task<User> Get(string email, string password);
+        Task<User> GetById(Guid id);
         Task<bool> Check(string email);
         Task<string> CheckIfIdExist(Guid id);
         Task<string> Create(User user);
