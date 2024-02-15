@@ -1,25 +1,62 @@
-# Aula 14 
+ï»¿# Aula 14 
 
-- Introdução
-- Conteudo
-- Sobre
-- Tutorial
+- SessÃ£o
+- Cache
 
-# Materiais 
 
-	-  https://learn.microsoft.com/pt-br/aspnet/core/mvc/overview?view=aspnetcore-8.0
-	-  https://learn.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-8.0&tabs=visual-studio
+## Exemplo cÃ³digo
 
-## Exemplo código
+```
+//Adicionar nos serviÃ§os a capacidade session
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.IsEssential = true; // make the session cookie essential
+});
 
 ```
 
+```
+//Exemplo para coletar dados da sessÃ£o pelo HttpContext
+
+ public static List<int> GetPizzas(HttpContext context)
+        {
+            List<int> pizzas = new List<int>();
+            var data = context.Session.GetString("Pedidos");
+
+            if (!string.IsNullOrEmpty(data))
+            {
+                pizzas.AddRange(JsonSerializer.Deserialize<int[]>(data));
+            }
+            return pizzas;
+        }
+///Exemplo para serializar dados na sessÃ£o
+
+[HttpPost]
+        public IActionResult AdicionarAoCarrinho(int pizzaId)
+        {
+            string returnUrl = Request.Headers["Referer"].ToString();
+            List<int> pizzas = GetPizzas(HttpContext);
+            pizzas.Add(pizzaId);
+            
+            HttpContext.Session.SetString("Pedidos", JsonSerializer.Serialize(pizzas.ToArray()));
+            return Redirect(returnUrl);
+        }
+
+```
+
+```
+//Exemplo de uso no html para fazer o contador do carrinho
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Carrinho" asp-action="Index">
+    ðŸ›’ Carrinho <span id="totalItens">@CarrinhoController.GetPizzas(Context).Count</span>
+    </a>
+</li>
 ```
 ## Exercicio
 
-- 01 Fazer a corrida de cachorro em API
-- 02 Adicionar documentação no aplicativo da pizzaria 
+- 01 Usar sessÃ£o para guardar dados, como pedidos, horarios.
 
- ## Próximos
+ ## PrÃ³ximos
 
-- [próximo](aula2.md)
+- [prÃ³ximo](aula15.md)
